@@ -74,5 +74,7 @@ body{
 }
 
 .req:focus{
-    outline: rgb(8, 8, 184);
+    outline: 1px solid  rgb(88, 144, 208);
+    outline-offset: 2px;
 }
+
