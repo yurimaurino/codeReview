@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+}
+
+body{
+    background-color: #2B2C33 ;
+    font-family: Arial, Helvetica, sans-serif
+    
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Quicksand:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-family: "Inter", sans-serif
+}
+
+.box-logo{
+    background-color: blue;
+    margin: 5px  5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.box-logo span{
+    color: #ffff;
+}
+
+.logo p{
+    color: #ffff;
+}
+
+
+.top{
+    margin: 40px 20px;
+}
+
+.top h1{
+    background:radial-gradient(circle,rgba(238, 174, 202, 1) 0%, rgb(88, 144, 208) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    background-clip: text; 
+    color: transparent; 
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.requisiton{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.req{
+    height: 35px;
+    width: 100%;
+    border-radius: 60px;
+    border: none;
+}
+
+.req::placeholder{
+    text-align: center;
+    width: 200px;
+}
+
+.req:focus{
+    outline: rgb(8, 8, 184);
+}
