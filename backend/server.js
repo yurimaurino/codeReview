@@ -3,14 +3,17 @@ const cors = require("cors")
 const dotenv = require("dotenv")
 
 dotenv.config()
-
+ 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 app.use(express.static("../frontend"))
 
-app.get("/dados", async (req, res) => {
+app.post("/dados", async (req, res) => {
+
+  const pergunta = req.body.pergunta 
+  
   const url = "https://api.groq.com/openai/v1/chat/completions"
   const resposta = await fetch(url, {
     method: "POST",
@@ -23,7 +26,7 @@ app.get("/dados", async (req, res) => {
       messages: [
         {
           "role": "user",
-          "content": "Olá"
+          "content": pergunta
         }
       ]
     })
