@@ -1,10 +1,18 @@
 async function buscarDados(){
+
+  const codigo = document.querySelector("#req").value
+  
+ await fetch("http://localhost:3000/dados", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      codigo: codigo
+    })
+  })
+
   const requisicao = await fetch("http://localhost:3000/dados")
   const dados = await requisicao.json()
-
-  const mensagem = dados.choices[0].message.content
-  console.log(mensagem)
-
-  document.getElementById("resposta").textContent = mensagem
+  console.log(dados.resposta)
 }
-
