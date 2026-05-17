@@ -1,8 +1,6 @@
 const express = require("express")
 const cors = require("cors")
-const dotenv = require("dotenv")
-
-dotenv.config()
+require("dotenv").config()
  
 const app = express()
 
@@ -10,10 +8,19 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static("../frontend"))
 
-app.post("/dados", async (req, res) => {
+let perguntaUsuario = ""
 
-  const pergunta = req.body.pergunta 
-  
+app.post("/dados", (req, res) => {
+
+  perguntaUsuario = req.body.codigo
+
+  res.status(200).json({
+    mensagem: "Pergunta Salva"
+  })
+})
+
+app.get("/dados", async (_, res) => {
+
   const url = "https://api.groq.com/openai/v1/chat/completions"
   const resposta = await fetch(url, {
     method: "POST",
@@ -26,17 +33,20 @@ app.post("/dados", async (req, res) => {
       messages: [
         {
           "role": "user",
-          "content": pergunta
+          "content": perguntaUsuario
         }
       ]
     })
   })
 
   const dados = await resposta.json()
-
-  res.json(dados)
+  const respostaIa = dados.choices[0].message.content
+  
+  res.status(200).json({
+    resposta: respostaIa
+  })
 })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Servidor Rodando")
 })
