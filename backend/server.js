@@ -7,7 +7,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 app.use(express.static("../frontend"))
-
+const port = process.env.PORT
+const apiKey = process.env.API_KEY
 let perguntaUsuario = ""
 
 app.post("/dados", (req, res) => {
@@ -26,7 +27,7 @@ app.get("/dados", async (_, res) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + process.env.API_KEY
+      "Authorization": "Bearer " + apiKey
     },
     body: JSON.stringify({
       model: "meta-llama/llama-4-scout-17b-16e-instruct",
@@ -47,6 +48,6 @@ app.get("/dados", async (_, res) => {
   })
 })
 
-app.listen(process.env.PORT, () => {
-  console.log("Servidor Rodando")
+app.listen(port, () => {
+  console.log("Servidor Rodando na porta: " + port)
 })
