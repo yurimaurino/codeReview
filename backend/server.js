@@ -9,6 +9,7 @@ app.use(express.json())
 app.use(express.static("../frontend"))
 const port = process.env.PORT
 const apiKey = process.env.API_KEY
+const prompt = process.env.PROMPT
 let perguntaUsuario = ""
 
 app.post("/dados", (req, res) => {
@@ -32,6 +33,10 @@ app.get("/dados", async (_, res) => {
     body: JSON.stringify({
       model: "meta-llama/llama-4-scout-17b-16e-instruct",
       messages: [
+        {
+          "role": "system",
+          "content": prompt
+        },
         {
           "role": "user",
           "content": perguntaUsuario
